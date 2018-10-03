@@ -1,107 +1,55 @@
 import java.util.*;
+public class intersection
+{
 
-class array{
+	public int[] create(int []a){
+		System.out.println("Enter the element to insert");
+		Scanner sc = new Scanner(System.in);
+		for(int i = 0; i < a.length; i++){
+			a[i] = sc.nextInt();
+		}
+		return a;
+	}
+	public void print(int []a){
 
-  int a[];
-   
-  Scanner kb = new Scanner(System.in);
+		for(int i = 0; i < a.length; i++){
+			System.out.print(a[i]+" ");
+		}
+		System.out.println();
+	}
+	public ArrayList<Integer> intersectArr(int []a,int []b){
+		int i = 0, j = 0;
+		ArrayList<Integer> l = new ArrayList<>();
+		while(i < a.length && j < b.length)
+		{
+			if(a[i] == b[j]){
+				l.add(a[i]);
+				i++;
+				j++;
+			}
+			else
+			{
+				if(a[i] > b[j]) j++;
+				else i++;
+			}
+		}
+		return l;
+	}
+	public static void main(String args[]){
 
-  array(int n){
+		intersection o = new intersection();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of first array");
+		int n = sc.nextInt();
+                int n1 = sc.nextInt();
+		int []a = new int[n];
+		int []b = new int[n1];
+		a = o.create(a);
+		b = o.create(b);
+		Arrays.sort(a);
+		Arrays.sort(b);
+		ArrayList<Integer> l = o.intersectArr(a,b);
+		System.out.println(l);
 
-   a = new int[n];
-  
-  }
-  
-  void get(){
-
-    for(int i=0;i<a.length;i++){
-
-    a[i] = kb.nextInt();
-
-    }
-    
-  }
-  
-  void sort(){
-    
-    int t;
-    
-    for(int i=1;i<a.length;i++){
-   
-      for(int j=0;j<a.length-1;j++){
-
-        if(a[j+1] < a[j]){
-
-          t = a[j+1];
-          
-          a[j+1] = a[j];
-
-          a[j] = t;
-
-        } 
-      
-      } 
-    
-    }
-  
-  }
-  
-  void print(){
-
-    for(int i=0;i<a.length;i++){
-    
-      System.out.print(a[i]+" ");
-
-    }
-  
-  }
-
-  ArrayList intersect(array k){
-
-    ArrayList<Integer> b = new ArrayList<Integer>();
-
-    for(int i=0;i<a.length;i++){
-
-      if(a[i]==k.a[i]){
-
-        b.add(a[i]);
-
-      }
-
-    }
- 
-    return b;
-
-  }  
-
-}
-class intersection{
-  
-  public static void main(String args[]){
-    
-  Scanner kb=new Scanner(System.in);
-  
-  System.out.println("Enter n:");
-
-  int n = kb.nextInt();
-
-  array a = new array(n);
-
-  a.get();
-
-  a.sort();
-
-  array b = new array(n);
-
-  b.get();
-
-  b.sort();
-
-  ArrayList<Integer> c = new ArrayList<Integer>();
-
-  c=a.intersect(b);
-
-  System.out.println(c);
-
-  }
+	}
 }
